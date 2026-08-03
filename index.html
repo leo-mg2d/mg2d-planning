@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MG2D Sécurité</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="setupWarning" class="setup hidden">
+    Configuration Supabase manquante. Copie <b>config.example.js</b> en <b>config.js</b>, puis ajoute l’URL et la clé publique du projet.
+  </div>
+
+  <main id="loginView" class="login">
+    <section class="login-card">
+      <img src="logo-mg2d.png" alt="MG2D Sécurité">
+      <h1>Espace MG2D</h1>
+      <p>Connexion administrateur ou agent</p>
+      <form id="loginForm" class="form">
+        <label>Email<input id="email" type="email" required autocomplete="email"></label>
+        <label>Mot de passe<input id="password" type="password" required autocomplete="current-password"></label>
+        <button class="btn primary" type="submit">Se connecter</button>
+      </form>
+      <p id="loginError" class="error"></p>
+    </section>
+  </main>
+
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="logo"><img src="logo-mg2d.png" alt="MG2D Sécurité"></div>
+      <div class="identity"><b id="identityName"></b><small id="identityRole"></small></div>
+      <nav id="nav"></nav>
+      <button id="logoutBtn" class="btn">Déconnexion</button>
+    </aside>
+
+    <section class="main">
+      <header class="topbar"><h1 id="pageTitle">Tableau de bord</h1><span id="status">Connecté</span></header>
+      <div class="content">
+        <section id="dashboard" class="page active">
+          <div id="stats" class="cards"></div>
+          <div class="panel">
+            <div class="toolbar">
+              <h2>Planning</h2>
+              <div><button id="prevMonth" class="btn small">‹</button> <b id="monthLabel"></b> <button id="nextMonth" class="btn small">›</button></div>
+            </div>
+            <div id="calendar" class="calendar"></div>
+          </div>
+        </section>
+
+        <section id="leaves" class="page">
+          <div class="panel">
+            <div class="toolbar"><h2>Demandes de congé</h2><button id="newLeaveBtn" class="btn primary">+ Nouvelle demande</button></div>
+            <div id="leaveList" class="list"></div>
+          </div>
+        </section>
+
+        <section id="adminRequests" class="page">
+          <div class="panel">
+            <h2>Validation des demandes</h2>
+            <div id="adminLeaveList" class="list"></div>
+          </div>
+        </section>
+
+        <section id="profile" class="page">
+          <div class="panel"><h2>Mon profil</h2><div id="profileContent"></div></div>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <dialog id="leaveDialog">
+    <form id="leaveForm" method="dialog" class="dialog-card">
+      <h2>Nouvelle demande</h2>
+      <div class="form">
+        <label>Type<select id="leaveType"><option>Congé payé</option><option>Congé sans solde</option><option>Indisponibilité</option><option>Repos exceptionnel</option></select></label>
+        <label>Du<input id="leaveStart" type="date" required></label>
+        <label>Au<input id="leaveEnd" type="date" required></label>
+        <label>Commentaire<textarea id="leaveComment"></textarea></label>
+      </div>
+      <div class="dialog-actions"><button class="btn" value="cancel">Annuler</button><button id="submitLeaveBtn" class="btn primary" value="default">Envoyer</button></div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
