@@ -1,5 +1,4 @@
-// Renomme ce fichier en config.js
 window.MG2D_CONFIG = {
-  supabaseUrl: "https://TON-PROJET.supabase.co",
-  supabaseAnonKey: "TA_CLE_PUBLIQUE_ANON"
+  supabaseUrl: "https://kfugtjwrsajkzdksazk.supabase.co",
+  supabaseAnonKey: "sb_publishable_1S_Y2t90szywtAjM6JUS7g_tKd4RON2"
 };
